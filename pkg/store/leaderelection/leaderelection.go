@@ -58,7 +58,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/util/clock"
+	"k8s.io/utils/clock"
+
+	//"k8s.io/apimachinery/pkg/util/clock"
 	"k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/wait"
 	rl "k8s.io/client-go/tools/leaderelection/resourcelock"
@@ -98,7 +100,7 @@ func NewLeaderElector(lec LeaderElectionConfig) (*LeaderElector, error) {
 	}
 	le := LeaderElector{
 		config: lec,
-		clock:  clock.RealClock{},
+		//clock:  clock.RealClock{},
 	}
 	return &le, nil
 }
@@ -151,7 +153,7 @@ type LeaderElectionConfig struct {
 // lifecycle events of the LeaderElector. These are invoked asynchronously.
 //
 // possible future callbacks:
-//  * OnChallenge()
+//   - OnChallenge()
 type LeaderCallbacks struct {
 	// OnStartedLeading is called when a LeaderElector client starts leading
 	OnStartedLeading func(context.Context)
