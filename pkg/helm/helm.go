@@ -299,6 +299,7 @@ func (c *HelmClient) generateHelmTemplates(
 	templateArgs := []string{
 		"template",
 		fmt.Sprintf("--namespace=%s", templateNamespace),
+		fmt.Sprintf("--validate"), // Validate helm chart against current cluster https://github.com/helm/helm/issues/10760
 		fmt.Sprintf("--values=%s", tempValuesPath),
 		fmt.Sprintf("--output-dir=%s", filepath.Dir(hctx.valuesPath)),
 	}
